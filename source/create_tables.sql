@@ -4,30 +4,6 @@
 
 
 #------------------------------------------------------------
-# Table: Statistiques
-#------------------------------------------------------------
-
-CREATE TABLE Statistiques(
-        annee                                         Smallint NOT NULL ,
-        situation                                     Varchar (256) NOT NULL ,
-        nombre_de_reponses                            Int NOT NULL ,
-        taux_de_reponse                               Smallint NOT NULL ,
-        taux_dinsertion                               Smallint NOT NULL ,
-        emplois_cadre_ou_professions_intermediaires   Smallint NOT NULL ,
-        emplois_stables                               Smallint NOT NULL ,
-        emplois_a_temps_plein                         Smallint NOT NULL ,
-        salaire_net_median_des_emplois_a_temps_plein  Int NOT NULL ,
-        diplomes_boursiers                            Smallint NOT NULL ,
-        taux_de_chomage_regional                      Smallint NOT NULL ,
-        salaire_net_mensuel_median_regional           Int NOT NULL ,
-        emplois_cadre                                 Int NOT NULL ,
-        emplois_exterieurs_a_la_region_de_luniversite Int NOT NULL ,
-        femmes                                        Smallint NOT NULL
-	,CONSTRAINT Statistiques_PK PRIMARY KEY (annee,situation)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: Academie
 #------------------------------------------------------------
 
@@ -45,7 +21,7 @@ CREATE TABLE Academie(
 CREATE TABLE Etablissement(
         id_etablissement         Varchar (50) NOT NULL ,
         nom_etablissement        Varchar (256) NOT NULL ,
-        nom_etablissement_actuel Varchar (256) NOT NULL ,
+        nom_etablissement_actuel Varchar (256)  ,
         id_academie              Varchar (3) NOT NULL
 	,CONSTRAINT Etablissement_PK PRIMARY KEY (id_etablissement)
 
@@ -84,15 +60,43 @@ CREATE TABLE Discipline(
 #------------------------------------------------------------
 
 CREATE TABLE Enquete(
-        annee            Smallint NOT NULL ,
-        situation        Varchar (256) NOT NULL ,
-        id_etablissement Varchar (50) NOT NULL ,
-        id_discipline    Varchar (10) NOT NULL ,
-        diplome          Varchar (256) NOT NULL
-	,CONSTRAINT Enquete_PK PRIMARY KEY (annee,situation,id_etablissement,id_discipline)
+        annee     Int NOT NULL ,
+        situation Varchar (256) NOT NULL ,
+        diplome   Varchar (256) NOT NULL
+	,CONSTRAINT Enquete_PK PRIMARY KEY (annee,situation,diplome)
+)ENGINE=InnoDB;
 
-	,CONSTRAINT Enquete_Statistiques_FK FOREIGN KEY (annee,situation) REFERENCES Statistiques(annee,situation)
-	,CONSTRAINT Enquete_Etablissement0_FK FOREIGN KEY (id_etablissement) REFERENCES Etablissement(id_etablissement)
-	,CONSTRAINT Enquete_Discipline1_FK FOREIGN KEY (id_discipline) REFERENCES Discipline(id_discipline)
+
+#------------------------------------------------------------
+# Table: Statistiques
+#------------------------------------------------------------
+
+CREATE TABLE Statistiques(
+        id_etablissement                              Varchar (50) NOT NULL ,
+        id_discipline                                 Varchar (10) NOT NULL ,
+        annee                                         Int NOT NULL ,
+        situation                                     Varchar (256) NOT NULL ,
+        diplome                                       Varchar (256) NOT NULL ,
+        annee_Enquete                                 Int NOT NULL ,
+        situation_Enquete                             Varchar (256) NOT NULL ,
+        diplome_Enquete                               Varchar (256) NOT NULL ,
+        taux_dinsertion                               Int ,
+        emplois_cadre_ou_professions_intermediaires   Int ,
+        emplois_stables                               Int ,
+        emplois_a_temps_plein                         Int ,
+        salaire_net_median_des_emplois_a_temps_plein  Int ,
+        salaire_brut_annuel_estime                    Int ,
+        de_diplomes_boursiers                         Int ,
+        taux_de_chomage_regional                      Int ,
+        salaire_net_mensuel_median_regional           Int ,
+        emplois_cadre                                 Int ,
+        emplois_exterieurs_a_la_region_de_luniversite Int NOT NULL ,
+        femmes                                        Int NOT NULL
+	,CONSTRAINT Statistiques_PK PRIMARY KEY (id_etablissement,id_discipline,annee,situation,diplome,annee_Enquete,situation_Enquete,diplome_Enquete)
+
+	,CONSTRAINT Statistiques_Etablissement_FK FOREIGN KEY (id_etablissement) REFERENCES Etablissement(id_etablissement)
+	,CONSTRAINT Statistiques_Discipline0_FK FOREIGN KEY (id_discipline) REFERENCES Discipline(id_discipline)
+	,CONSTRAINT Statistiques_Enquete1_FK FOREIGN KEY (annee,situation,diplome) REFERENCES Enquete(annee,situation,diplome)
+	,CONSTRAINT Statistiques_Enquete2_FK FOREIGN KEY (annee_Enquete,situation_Enquete,diplome_Enquete) REFERENCES Enquete(annee,situation,diplome)
 )ENGINE=InnoDB;
 
