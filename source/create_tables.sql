@@ -11,7 +11,7 @@ CREATE TABLE Academie(
         id_academie  Varchar (3) NOT NULL ,
         nom_academie Varchar (50) NOT NULL
 	,CONSTRAINT Academie_PK PRIMARY KEY (id_academie)
-)ENGINE=InnoDB;A
+)ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
@@ -21,7 +21,7 @@ CREATE TABLE Academie(
 CREATE TABLE Etablissement(
         id_etablissement         Varchar (30) NOT NULL ,
         nom_etablissement        Varchar (256) NOT NULL ,
-        nom_etablissement_actuel Varchar (256) NOT NULL ,
+        nom_etablissement_actuel Varchar (256)  ,
         id_academie              Varchar (3) NOT NULL
 	,CONSTRAINT Etablissement_PK PRIMARY KEY (id_etablissement)
 
