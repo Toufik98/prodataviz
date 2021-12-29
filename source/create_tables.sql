@@ -21,7 +21,7 @@ CREATE TABLE Academie(
 CREATE TABLE Etablissement(
         id_etablissement         Varchar (30) NOT NULL ,
         nom_etablissement        Varchar (256) NOT NULL ,
-        nom_etablissement_actuel Varchar (256)  ,
+        nom_etablissement_actuel Varchar (256) ,
         id_academie              Varchar (3) NOT NULL
 	,CONSTRAINT Etablissement_PK PRIMARY KEY (id_etablissement)
 
@@ -77,9 +77,6 @@ CREATE TABLE Statistiques(
         annee                                         Varchar (4) NOT NULL ,
         situation                                     Varchar (50) NOT NULL ,
         diplome                                       Varchar (50) NOT NULL ,
-        annee_Enquete                                 Varchar (4) NOT NULL ,
-        situation_Enquete                             Varchar (50) NOT NULL ,
-        diplome_Enquete                               Varchar (50) NOT NULL ,
         taux_dinsertion                               Int ,
         emplois_cadre_ou_professions_intermediaires   Int ,
         emplois_stables                               Int ,
@@ -92,11 +89,10 @@ CREATE TABLE Statistiques(
         emplois_cadre                                 Int ,
         emplois_exterieurs_a_la_region_de_luniversite Int NOT NULL ,
         femmes                                        Int NOT NULL
-	,CONSTRAINT Statistiques_PK PRIMARY KEY (id_etablissement,id_discipline,annee,situation,diplome,annee_Enquete,situation_Enquete,diplome_Enquete)
+	,CONSTRAINT Statistiques_PK PRIMARY KEY (id_etablissement,id_discipline,annee,situation,diplome)
 
 	,CONSTRAINT Statistiques_Etablissement_FK FOREIGN KEY (id_etablissement) REFERENCES Etablissement(id_etablissement)
 	,CONSTRAINT Statistiques_Discipline0_FK FOREIGN KEY (id_discipline) REFERENCES Discipline(id_discipline)
 	,CONSTRAINT Statistiques_Enquete1_FK FOREIGN KEY (annee,situation,diplome) REFERENCES Enquete(annee,situation,diplome)
-	,CONSTRAINT Statistiques_Enquete2_FK FOREIGN KEY (annee_Enquete,situation_Enquete,diplome_Enquete) REFERENCES Enquete(annee,situation,diplome)
 )ENGINE=InnoDB;
 
