@@ -77,18 +77,18 @@ CREATE TABLE Statistiques(
         annee                                         Varchar (4) NOT NULL ,
         situation                                     Varchar (50) NOT NULL ,
         diplome                                       Varchar (50) NOT NULL ,
-        taux_dinsertion                               Int ,
-        emplois_cadre_ou_professions_intermediaires   Int ,
-        emplois_stables                               Int ,
-        emplois_a_temps_plein                         Int ,
-        salaire_net_median_des_emplois_a_temps_plein  Int ,
-        salaire_brut_annuel_estime                    Int ,
-        de_diplomes_boursiers                         Int ,
-        taux_de_chomage_regional                      Int ,
-        salaire_net_mensuel_median_regional           Int ,
-        emplois_cadre                                 Int ,
-        emplois_exterieurs_a_la_region_de_luniversite Int NOT NULL ,
-        femmes                                        Int NOT NULL
+        taux_dinsertion                               Float ,
+        emplois_cadre_ou_professions_intermediaires   Float ,
+        emplois_stables                               FLOAT ,
+        emplois_a_temps_plein                          Float ,
+        salaire_net_median_des_emplois_a_temps_plein  Float ,
+        salaire_brut_annuel_estime                    float ,
+        de_diplomes_boursiers                         float ,
+        taux_de_chomage_regional                      float ,
+        salaire_net_mensuel_median_regional           int ,
+        emplois_cadre                                 float ,
+        emplois_exterieurs_a_la_region_de_luniversite float  ,
+        femmes                                        float
 	,CONSTRAINT Statistiques_PK PRIMARY KEY (id_etablissement,id_discipline,annee,situation,diplome)
 
 	,CONSTRAINT Statistiques_Etablissement_FK FOREIGN KEY (id_etablissement) REFERENCES Etablissement(id_etablissement)
