@@ -11,7 +11,7 @@ CREATE TABLE Academie(
         id_academie  Varchar (3) NOT NULL ,
         nom_academie Varchar (50) NOT NULL
 	,CONSTRAINT Academie_PK PRIMARY KEY (id_academie)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB;A
 
 
 #------------------------------------------------------------
@@ -19,9 +19,9 @@ CREATE TABLE Academie(
 #------------------------------------------------------------
 
 CREATE TABLE Etablissement(
-        id_etablissement         Varchar (50) NOT NULL ,
+        id_etablissement         Varchar (30) NOT NULL ,
         nom_etablissement        Varchar (256) NOT NULL ,
-        nom_etablissement_actuel Varchar (256)  ,
+        nom_etablissement_actuel Varchar (256) NOT NULL ,
         id_academie              Varchar (3) NOT NULL
 	,CONSTRAINT Etablissement_PK PRIMARY KEY (id_etablissement)
 
@@ -47,7 +47,7 @@ CREATE TABLE Domaine(
 CREATE TABLE Discipline(
         id_discipline  Varchar (10) NOT NULL ,
         nom_discipline Varchar (256) NOT NULL ,
-        poids          Int NOT NULL ,
+        poids          Int ,
         code_domaine   Varchar (10) NOT NULL
 	,CONSTRAINT Discipline_PK PRIMARY KEY (id_discipline)
 
@@ -60,9 +60,9 @@ CREATE TABLE Discipline(
 #------------------------------------------------------------
 
 CREATE TABLE Enquete(
-        annee     Int NOT NULL ,
-        situation Varchar (256) NOT NULL ,
-        diplome   Varchar (256) NOT NULL
+        annee     Varchar (4) NOT NULL ,
+        situation Varchar (50) NOT NULL ,
+        diplome   Varchar (50) NOT NULL
 	,CONSTRAINT Enquete_PK PRIMARY KEY (annee,situation,diplome)
 )ENGINE=InnoDB;
 
@@ -72,14 +72,14 @@ CREATE TABLE Enquete(
 #------------------------------------------------------------
 
 CREATE TABLE Statistiques(
-        id_etablissement                              Varchar (50) NOT NULL ,
+        id_etablissement                              Varchar (30) NOT NULL ,
         id_discipline                                 Varchar (10) NOT NULL ,
-        annee                                         Int NOT NULL ,
-        situation                                     Varchar (256) NOT NULL ,
-        diplome                                       Varchar (256) NOT NULL ,
-        annee_Enquete                                 Int NOT NULL ,
-        situation_Enquete                             Varchar (256) NOT NULL ,
-        diplome_Enquete                               Varchar (256) NOT NULL ,
+        annee                                         Varchar (4) NOT NULL ,
+        situation                                     Varchar (50) NOT NULL ,
+        diplome                                       Varchar (50) NOT NULL ,
+        annee_Enquete                                 Varchar (4) NOT NULL ,
+        situation_Enquete                             Varchar (50) NOT NULL ,
+        diplome_Enquete                               Varchar (50) NOT NULL ,
         taux_dinsertion                               Int ,
         emplois_cadre_ou_professions_intermediaires   Int ,
         emplois_stables                               Int ,
