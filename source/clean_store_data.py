@@ -51,13 +51,20 @@ nom_academie = nom_academie.values
 
 print("Inserting values to Academie table...")
 # Insert values to Academie table
+# If value is nan then insert null
+# Check if the value is already in the table
+# If not insert it
 for i in tqdm(range(len(id_academie))):
-    sql = "INSERT INTO academie (id_academie, nom_academie) VALUES (%s, %s)"
-    val = (id_academie[i], nom_academie[i])
     mycursor = mydb.cursor()
+    sql = "SELECT * FROM Academie WHERE id_academie = %s"
+    val = (id_academie[i],)
     mycursor.execute(sql, val)
-    mydb.commit()
-
+    myresult = mycursor.fetchall()
+    if len(myresult) == 0:
+        sql = "INSERT INTO Academie (id_academie, nom_academie) VALUES (%s, %s)"
+        val = (id_academie[i], nom_academie[i])
+        mycursor.execute(sql, val)
+        mydb.commit()
 
 ## Insert values to Etablisement table
 # Fetch the needed columns
