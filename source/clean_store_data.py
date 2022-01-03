@@ -12,7 +12,7 @@ from tqdm import tqdm
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  passwd="Goodboy.5",
+  passwd="SadikaSydney99",
   database="insertion_pro",
   auth_plugin='mysql_native_password'
 )
@@ -22,7 +22,7 @@ df = pd.read_csv('../data/fr-esr-insertion_professionnelle-master.csv', sep=';')
 
 ## Clean the data
 
-# Replace all values wich are equal to "ns" or "np" by None
+# Replace all values which are equal to "ns" or "np" by None
 df = df.where((df != 'ns') & (df != 'nd'), None)
 # Replace all values wich are eaquel to "." by None
 df = df.where((df != '.'), None)
@@ -31,6 +31,9 @@ df = df.where((pd.notnull(df)), None)
 # Remove all the rows where the column "remarque" is not empty
 df = df[df['remarque'].isnull()]
 
+# Delete all rows where id_etablissement is null or id_academie is null
+df = df[df['numero_de_l_etablissement'].notnull()]
+df = df[df['code_de_l_academie'].notnull()]
 
 ## Insert values to Academie table
 # Fetch the needed columns
@@ -207,9 +210,7 @@ for i in tqdm(range(len(annee))):
 
 
 ## Insert values to Statistiques table
-# Delete all rows where id_etablissement is null or id_academie is null
-df = df[df['numero_de_l_etablissement'].notnull()]
-df = df[df['code_de_l_academie'].notnull()]
+
 
 
 # Fetch the needed columns
