@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e9d5ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="108" ry="108" fill="url(#bg)"/>
+  <!-- Subtle inner shadow -->
+  <rect width="512" height="512" rx="108" ry="108" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="4"/>
+  <!-- Chart bars -->
+  <g filter="url(#glow)">
+    <!-- Bar 1 (shortest) -->
+    <rect x="108" y="280" width="72" height="136" rx="12" fill="url(#bar1)" opacity="0.9"/>
+    <!-- Bar 2 (tallest) -->
+    <rect x="220" y="160" width="72" height="256" rx="12" fill="url(#bar2)" opacity="0.95"/>
+    <!-- Bar 3 (medium) -->
+    <rect x="332" y="210" width="72" height="206" rx="12" fill="url(#bar3)"/>
+  </g>
+  <!-- Trend line -->
+  <polyline points="144,260 256,140 368,190" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" filter="url(#glow)"/>
+  <!-- Dot accents on trend line -->
+  <circle cx="144" cy="260" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="256" cy="140" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="368" cy="190" r="14" fill="#ffffff" opacity="0.9"/>
+</svg>
