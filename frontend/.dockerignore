@@ -1,0 +1,9 @@
+# Ignore files not needed in Docker images
+node_modules
+.next
+.git
+.gitignore
+*.md
+.DS_Store
+.env.local
+.env*.local

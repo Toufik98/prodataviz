@@ -1,0 +1,8 @@
+# Ignore files not needed in Docker images
+.venv
+__pycache__
+*.pyc
+.git
+.gitignore
+*.md
+.DS_Store

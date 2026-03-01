@@ -19,8 +19,7 @@ erDiagram
         int id_academie FK
     }
     
-    Domaine {
-        string code PK
+    Domaine { 
         string nom
     }
     
