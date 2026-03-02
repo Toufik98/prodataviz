@@ -30,6 +30,8 @@ ENV NODE_ENV=production
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/messages ./messages
+COPY --from=builder /app/i18n.js ./i18n.js
 
 EXPOSE 3000
 

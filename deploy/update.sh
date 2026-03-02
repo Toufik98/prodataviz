@@ -6,6 +6,16 @@
 set -euo pipefail
 
 APP_DIR="$HOME/prodataviz"
+SERVER_IP="${1:-$(curl -s4 --max-time 3 ifconfig.me 2>/dev/null || curl -s6 --max-time 3 ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')}"
+# Wrap IPv6 in brackets for URLs
+if [[ "$SERVER_IP" == *:* ]]; then
+  SERVER_URL="[${SERVER_IP}]"
+else
+  SERVER_URL="${SERVER_IP}"
+fi
+# Use empty API URL so frontend uses relative paths (same host via nginx)
+export NEXT_PUBLIC_API_URL="/projects/prodataviz"
+export CORS_ORIGINS="http://${SERVER_URL},http://${SERVER_URL}:3000"
 
 echo ">> Updating ProDataViz..."
 
@@ -33,7 +43,7 @@ echo "  Frontend: ${FRONTEND_STATUS}"
 
 if [[ "$BACKEND_STATUS" == "200" && "$FRONTEND_STATUS" == "200" ]]; then
   echo ""
-  echo ">> Update successful! App live at http://84.235.235.15"
+  echo ">> Update successful! App live at http://${SERVER_URL}"
 else
   echo ""
   echo ">> WARNING: One or more services may not be healthy."

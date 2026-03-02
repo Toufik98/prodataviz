@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # --------------------------------------------------
-# push.sh — Sync project to Oracle VM
-# Run from the project root on your LOCAL machine.
+# push.sh — Sync project to a remote server
+# Usage: ./deploy/push.sh [host]  (default: oracle-vm)
 # --------------------------------------------------
 set -euo pipefail
 
-REMOTE="oracle-vm"
+REMOTE="${1:-oracle-vm}"
 REMOTE_DIR="~/prodataviz"
 
 echo ">> Syncing project to ${REMOTE}:${REMOTE_DIR} ..."

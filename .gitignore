@@ -13,8 +13,16 @@ data/*.db
 # Environment
 .env
 .env.local
+.env.production
+.env.*
+!.env.example
 .venv/
 venv/
+
+# Secrets / keys
+*.pem
+*.key
+!deploy/nginx-prodataviz.conf
 
 # OS
 .DS_Store

@@ -1,8 +1,11 @@
+# --------------------------------------------------
+# docker-compose.prod.yml
+# Production compose file — pulls pre-built images
+# from GitHub Container Registry instead of building.
+# --------------------------------------------------
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/toufik98/prodataviz-backend:${TAG:-latest}
     container_name: prodataviz-backend
     restart: unless-stopped
     environment:
@@ -18,11 +21,7 @@ services:
       retries: 3
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-/projects/prodataviz}"
+    image: ghcr.io/toufik98/prodataviz-frontend:${TAG:-latest}
     container_name: prodataviz-frontend
     restart: unless-stopped
     depends_on:

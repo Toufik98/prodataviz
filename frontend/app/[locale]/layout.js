@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import '../globals.css';
 import SidebarNavItem from '@/components/SidebarNavItem';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -43,7 +44,7 @@ export default async function LocaleLayout({ children, params }) {
                     <div className="app-layout">
                         <aside className="sidebar glass-panel">
                             <div className="sidebar-logo">
-                                <img src="/logo.png" alt="ProDataViz Logo" style={{ width: 36, height: 36, borderRadius: '8px', boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)' }} />
+                                <Image src="/logo.png" alt="ProDataViz Logo" width={36} height={36} style={{ borderRadius: '8px', boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)' }} />
                                 <div>
                                     <h1>ProDataViz</h1>
                                     <p>Insertion Masters</p>

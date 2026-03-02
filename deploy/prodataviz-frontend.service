@@ -8,7 +8,7 @@ User=ubuntu
 Group=ubuntu
 WorkingDirectory=/home/ubuntu/prodataviz/frontend
 Environment="NODE_ENV=production"
-Environment="NEXT_PUBLIC_API_URL=http://84.235.235.15:8000"
+Environment="NEXT_PUBLIC_API_URL=http://localhost:8000"
 ExecStart=/usr/bin/npm run start -- -p 3000
 Restart=always
 RestartSec=5

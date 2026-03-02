@@ -21,15 +21,15 @@ Deploy the ProDataViz application (Next.js frontend + FastAPI backend) on an **O
 
 ```
 Host oracle-vm
-  HostName 84.235.235.15
+  HostName <SERVER_IP>
   User ubuntu
-  IdentityFile ~/Downloads/Projects/ssh-key-2026-03-01.key
+  IdentityFile ~/.ssh/your-private-key
   ServerAliveInterval 60
   ServerAliveCountMax 3
   ForwardAgent yes
 ```
 
-- Key permissions: `chmod 400 ~/Downloads/Projects/ssh-key-2026-03-01.key`
+- Key permissions: `chmod 400 ~/.ssh/your-private-key`
 
 ### Oracle Cloud Console
 
@@ -55,7 +55,7 @@ From your **local machine**, run:
 ssh oracle-vm 'bash ~/prodataviz/deploy/setup-server.sh'
 ```
 
-That's it. The app will be live at `http://84.235.235.15`.
+That's it. The app will be live at `http://<SERVER_IP>` (auto-detected).
 
 ---
 
@@ -123,7 +123,7 @@ curl -s http://localhost:8000/ | python3 -m json.tool
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/
 ```
 
-From your browser: `http://84.235.235.15`
+From your browser: `http://<SERVER_IP>` (or `http://[IPv6_ADDRESS]` for IPv6-only servers)
 
 ---
 
@@ -168,7 +168,7 @@ sudo ss -tlnp | grep -E '(3000|8000|80)'
 
 | Variable | Where | Default | Description |
 |----------|-------|---------|-------------|
-| `NEXT_PUBLIC_API_URL` | Frontend build arg | `http://84.235.235.15/api` | Backend API URL |
+| `NEXT_PUBLIC_API_URL` | Frontend build arg | auto-detected at deploy time | Backend API URL |
 | `DATABASE_URL` | Backend | `sqlite:///../data/prodataviz.db` | SQLite DB path |
 
 ---
